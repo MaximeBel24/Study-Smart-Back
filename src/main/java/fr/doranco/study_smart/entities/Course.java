@@ -1,9 +1,6 @@
 package fr.doranco.study_smart.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Course {
@@ -17,6 +14,9 @@ public class Course {
     private double price;
     private int duration;
     private String level;
+
+    @ManyToOne
+    private Category category;
 
     public Course() {
     }
@@ -84,6 +84,14 @@ public class Course {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

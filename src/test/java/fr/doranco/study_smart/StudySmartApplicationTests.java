@@ -1,5 +1,6 @@
 package fr.doranco.study_smart;
 
+import fr.doranco.study_smart.entities.Category;
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.repositories.CourseRepository;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,64 @@ class StudySmartApplicationTests {
 	@Test
 	public void testDeleteCourse() {
 		courseRepository.deleteById(1L);
+	}
+
+	@Test
+	public void testFindByTitle() {
+		List<Course> courses = courseRepository.findByTitle("Cours Java");
+		for (Course c : courses) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testFindByTitleContains() {
+		List<Course> courses = courseRepository.findByTitleContains("Cours");
+		for (Course c : courses) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testFindByTitlePrice() {
+		List<Course> courses = courseRepository.findByTitlePrice("Cours Java", 14.99);
+		for (Course c : courses) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testFindByCategory() {
+		Category cat = new Category();
+		cat.setId(1L);
+		List<Course> courses = courseRepository.findByCategory(cat);
+		for (Course c : courses) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void findByCategoryId() {
+		List<Course> courses = courseRepository.findByCategoryId(1L);
+		for (Course c : courses) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testFindByOrderByTitleAsc() {
+		List<Course> courses = courseRepository.findByOrderByTitleAsc();
+		for (Course c : courses){
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testSortTitlePrice() {
+		List<Course> courses = courseRepository.sortTitlePrice();
+		for (Course c : courses) {
+			System.out.println(c);
+		}
 	}
 
 }

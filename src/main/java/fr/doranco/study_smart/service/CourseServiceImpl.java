@@ -1,5 +1,6 @@
 package fr.doranco.study_smart.service;
 
+import fr.doranco.study_smart.entities.Category;
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,40 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public List<Course> getAllCourse() {
         return courseRepository.findAll();
+    }
+
+    @Override
+    public List<Course> findByTitle(String title) {
+        return courseRepository.findByTitle(title);
+    }
+
+    @Override
+    public List<Course> findByTitleContains(String title) {
+        return courseRepository.findByTitleContains(title);
+    }
+
+    @Override
+    public List<Course> findByNamePrice(String title, Double price) {
+        return courseRepository.findByTitlePrice(title, price);
+    }
+
+    @Override
+    public List<Course> findByCategory(Category category) {
+        return courseRepository.findByCategory(category);
+    }
+
+    @Override
+    public List<Course> findByCategoryId(Long id) {
+        return courseRepository.findByCategoryId(id);
+    }
+
+    @Override
+    public List<Course> findByOrderByTitleAsc() {
+        return courseRepository.findByOrderByTitleAsc();
+    }
+
+    @Override
+    public List<Course> sortTitlePrice() {
+        return courseRepository.sortTitlePrice();
     }
 }
