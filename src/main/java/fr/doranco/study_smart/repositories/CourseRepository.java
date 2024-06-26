@@ -5,9 +5,11 @@ import fr.doranco.study_smart.entities.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
+@RepositoryRestResource(path = "rest")
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     List<Course> findByTitle(String name);

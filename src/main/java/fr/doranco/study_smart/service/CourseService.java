@@ -11,7 +11,7 @@ public interface CourseService {
     void deleteCourse(Course c);
     void deleteCourseById(Long id);
     Course getCourse(Long id);
-    List<Course> getAllCourse();
+    List<Course> getAllCourses();
     List<Course> findByTitle(String title);
     List<Course> findByTitleContains(String title);
     List<Course> findByNamePrice(String title, Double price);

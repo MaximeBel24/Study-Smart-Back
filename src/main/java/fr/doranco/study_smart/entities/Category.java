@@ -1,5 +1,6 @@
 package fr.doranco.study_smart.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class Category {
     private Long id;
     private String name;
     private String description;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Course> courses;
 

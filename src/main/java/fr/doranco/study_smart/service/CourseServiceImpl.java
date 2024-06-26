@@ -40,7 +40,7 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public List<Course> getAllCourse() {
+    public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
 
