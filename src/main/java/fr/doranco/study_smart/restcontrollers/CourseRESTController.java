@@ -1,5 +1,6 @@
 package fr.doranco.study_smart.restcontrollers;
 
+import fr.doranco.study_smart.dto.CourseDTO;
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,23 +17,23 @@ public class CourseRESTController {
     CourseService courseService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Course> getAllCourses() {
+    public List<CourseDTO> getAllCourses() {
         return courseService.getAllCourses();
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Course getCourseById(@PathVariable("id") Long id) {
+    public CourseDTO getCourseById(@PathVariable("id") Long id) {
         return courseService.getCourse(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Course createCourse(@RequestBody Course course) {
-        return courseService.saveCourse(course);
+    public CourseDTO createCourse(@RequestBody CourseDTO courseDTO) {
+        return courseService.saveCourse(courseDTO);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public Course updateCourse(@RequestBody Course course) {
-        return courseService.updateCourse(course);
+    public CourseDTO updateCourse(@RequestBody CourseDTO courseDTO) {
+        return courseService.updateCourse(courseDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

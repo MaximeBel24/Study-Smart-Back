@@ -1,12 +1,16 @@
 package fr.doranco.study_smart.service;
 
+import fr.doranco.study_smart.dto.CourseDTO;
 import fr.doranco.study_smart.entities.Category;
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.repositories.CourseRepository;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements CourseService{
@@ -14,14 +18,17 @@ public class CourseServiceImpl implements CourseService{
     @Autowired
     CourseRepository courseRepository;
 
+    @Autowired
+    ModelMapper modelMapper;
+
     @Override
-    public Course saveCourse(Course c) {
-        return courseRepository.save(c);
+    public CourseDTO saveCourse(CourseDTO c) {
+        return convertEntityToDto(courseRepository.save(converDtoToEntity(c)));
     }
 
     @Override
-    public Course updateCourse(Course c) {
-        return courseRepository.save(c);
+    public CourseDTO updateCourse(CourseDTO c) {
+        return convertEntityToDto(courseRepository.save(converDtoToEntity(c)));
     }
 
     @Override
@@ -35,13 +42,15 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public Course getCourse(Long id) {
-        return courseRepository.findById(id).get();
+    public CourseDTO getCourse(Long id) {
+        return convertEntityToDto(courseRepository.findById(id).get());
     }
 
     @Override
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public List<CourseDTO> getAllCourses() {
+        return courseRepository.findAll().stream()
+                .map(this::convertEntityToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -77,5 +86,19 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public List<Course> sortTitlePrice() {
         return courseRepository.sortTitlePrice();
+    }
+
+    @Override
+    public CourseDTO convertEntityToDto(Course course) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+        CourseDTO courseDTO = modelMapper.map(course, CourseDTO.class);
+        return courseDTO;
+    }
+
+    @Override
+    public Course converDtoToEntity(CourseDTO courseDTO) {
+        Course course = new Course();
+        course = modelMapper.map(courseDTO, Course.class);
+        return course;
     }
 }

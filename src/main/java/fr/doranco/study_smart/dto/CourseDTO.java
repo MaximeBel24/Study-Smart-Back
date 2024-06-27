@@ -1,12 +1,17 @@
-package fr.doranco.study_smart.entities;
+package fr.doranco.study_smart.dto;
 
-import jakarta.persistence.*;
+import fr.doranco.study_smart.entities.Category;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
-public class Course {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class CourseDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
@@ -14,21 +19,8 @@ public class Course {
     private double price;
     private int duration;
     private String level;
-
-    @ManyToOne
     private Category category;
-
-    public Course() {
-    }
-
-    public Course(String title, String description, String image, double price, int duration, String level) {
-        this.title = title;
-        this.description = description;
-        this.image = image;
-        this.price = price;
-        this.duration = duration;
-        this.level = level;
-    }
+    private String categoryName;
 
     public Long getId() {
         return id;
@@ -92,18 +84,5 @@ public class Course {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
-                ", price=" + price +
-                ", duration=" + duration +
-                ", level='" + level + '\'' +
-                '}';
     }
 }

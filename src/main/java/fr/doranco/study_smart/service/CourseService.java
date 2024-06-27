@@ -1,17 +1,18 @@
 package fr.doranco.study_smart.service;
 
+import fr.doranco.study_smart.dto.CourseDTO;
 import fr.doranco.study_smart.entities.Category;
 import fr.doranco.study_smart.entities.Course;
 
 import java.util.List;
 
 public interface CourseService {
-    Course saveCourse(Course c);
-    Course updateCourse(Course c);
+    CourseDTO saveCourse(CourseDTO c);
+    CourseDTO updateCourse(CourseDTO c);
     void deleteCourse(Course c);
     void deleteCourseById(Long id);
-    Course getCourse(Long id);
-    List<Course> getAllCourses();
+    CourseDTO getCourse(Long id);
+    List<CourseDTO> getAllCourses();
     List<Course> findByTitle(String title);
     List<Course> findByTitleContains(String title);
     List<Course> findByNamePrice(String title, Double price);
@@ -20,4 +21,6 @@ public interface CourseService {
     List<Course> findByOrderByTitleAsc();
     List<Course> sortTitlePrice();
 
+    CourseDTO convertEntityToDto(Course course);
+    Course converDtoToEntity(CourseDTO courseDTO);
 }
