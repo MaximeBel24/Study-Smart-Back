@@ -45,4 +45,9 @@ public class CourseRESTController {
     public List<Course> getCourseByCategoryId(@PathVariable("id") Long id) {
         return courseService.findByCategoryId(id);
     }
+
+    @RequestMapping(value="/courseByTitle/{title}", method = RequestMethod.GET)
+    public List<Course> findByTitleContains(@PathVariable("title") String title) {
+        return courseService.findByTitleContains(title);
+    }
 }
