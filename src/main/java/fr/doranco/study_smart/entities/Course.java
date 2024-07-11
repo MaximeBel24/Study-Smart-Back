@@ -2,6 +2,8 @@ package fr.doranco.study_smart.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Course {
 
@@ -10,7 +12,6 @@ public class Course {
     private Long id;
     private String title;
     private String description;
-    private String image;
     private double price;
     private int duration;
     private String level;
@@ -18,16 +19,17 @@ public class Course {
     @ManyToOne
     private Category category;
 
-    public Course() {
+    @OneToMany (mappedBy = "course")
+    private List<Image> images;
+
+    private String imagePath;
+
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public Course(String title, String description, String image, double price, int duration, String level) {
-        this.title = title;
-        this.description = description;
-        this.image = image;
-        this.price = price;
-        this.duration = duration;
-        this.level = level;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public Long getId() {
@@ -52,14 +54,6 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public double getPrice() {
@@ -94,16 +88,25 @@ public class Course {
         this.category = category;
     }
 
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
+                ", images='" + images + '\'' +
                 ", price=" + price +
                 ", duration=" + duration +
                 ", level='" + level + '\'' +
                 '}';
     }
+
 }

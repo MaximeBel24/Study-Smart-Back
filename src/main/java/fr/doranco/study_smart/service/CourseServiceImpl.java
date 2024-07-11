@@ -3,11 +3,15 @@ package fr.doranco.study_smart.service;
 import fr.doranco.study_smart.entities.Category;
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.repositories.CourseRepository;
+import fr.doranco.study_smart.repositories.ImageRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +20,9 @@ public class CourseServiceImpl implements CourseService{
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    ImageRepository imageRepository;
 
     @Autowired
     ModelMapper modelMapper;
@@ -27,7 +34,15 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public Course updateCourse(Course c) {
-        return courseRepository.save(c);
+//        Long oldCourseImageId = this.getCourse(c.getId()).getImage().getIdImage();
+//        Long newCourseImageId = c.getImage().getIdImage();
+
+            Course courseUpdated = courseRepository.save(c);
+
+//            if (oldCourseImageId != newCourseImageId)
+//                imageRepository.deleteById(oldCourseImageId);
+
+        return courseUpdated;
     }
 
     @Override
@@ -37,6 +52,13 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public void deleteCourseById(Long id) {
+        Course c = getCourse(id);
+        // supprimer l'image avant de supprimer le cours
+        try {
+            Files.delete(Paths.get(System.getProperty("user.home")+"/images/" + c.getImagePath()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         courseRepository.deleteById(id);
     }
 
