@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/image")
+@RequestMapping("/image")
 @CrossOrigin(origins = "*")
 public class ImageRESTController {
 

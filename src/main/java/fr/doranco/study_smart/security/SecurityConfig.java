@@ -35,15 +35,16 @@ public class SecurityConfig {
                                 return cors;
                             }
                         })
-                )
-                .authorizeHttpRequests( requests -> requests
-                        .requestMatchers("/api/all/**").hasAnyAuthority("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.GET,"/api/getbyid/**").hasAnyAuthority("ADMIN","USER")
-                        .requestMatchers(HttpMethod.POST,"/api/addcourse/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.PUT,"/api/updatecourse/**").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE,"/api/delcourse/**").hasAuthority("ADMIN")
-                        .anyRequest().authenticated() )
-                .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+                );
+//                .authorizeHttpRequests( requests -> requests
+////                        .requestMatchers("/api/all/**").hasAnyAuthority("ADMIN", "USER")
+////                        .requestMatchers(HttpMethod.GET,"/api/getbyid/**").hasAnyAuthority("ADMIN","USER")
+////                        .requestMatchers(HttpMethod.POST,"/api/addcourse/**").hasAnyAuthority("ADMIN")
+////                        .requestMatchers(HttpMethod.PUT,"/api/updatecourse/**").hasAuthority("ADMIN")
+////                        .requestMatchers(HttpMethod.DELETE,"/api/delcourse/**").hasAuthority("ADMIN")
+//                        .anyRequest().authenticated()
+//                        )
+//                .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }
