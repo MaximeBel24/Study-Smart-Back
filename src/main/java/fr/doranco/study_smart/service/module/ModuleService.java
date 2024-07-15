@@ -1,4 +1,4 @@
-package fr.doranco.study_smart.service;
+package fr.doranco.study_smart.service.module;
 
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.entities.Module;

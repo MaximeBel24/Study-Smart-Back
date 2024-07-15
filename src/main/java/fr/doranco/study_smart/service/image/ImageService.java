@@ -1,4 +1,4 @@
-package fr.doranco.study_smart.service;
+package fr.doranco.study_smart.service.image;
 
 import fr.doranco.study_smart.entities.Image;
 import org.springframework.http.ResponseEntity;

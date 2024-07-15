@@ -1,4 +1,4 @@
-package fr.doranco.study_smart.service;
+package fr.doranco.study_smart.service.module;
 
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.entities.Module;
@@ -6,11 +6,10 @@ import fr.doranco.study_smart.repositories.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
-public class ModuleServiceImpl implements ModuleService{
+public class ModuleServiceImpl implements ModuleService {
 
     @Autowired
     ModuleRepository moduleRepository;

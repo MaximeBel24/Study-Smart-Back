@@ -9,7 +9,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(path = "rest")
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     List<Course> findByTitle(String name);

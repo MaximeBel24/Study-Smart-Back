@@ -2,8 +2,8 @@ package fr.doranco.study_smart.restcontrollers;
 
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.entities.Image;
-import fr.doranco.study_smart.service.CourseService;
-import fr.doranco.study_smart.service.ImageService;
+import fr.doranco.study_smart.service.course.CourseService;
+import fr.doranco.study_smart.service.image.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

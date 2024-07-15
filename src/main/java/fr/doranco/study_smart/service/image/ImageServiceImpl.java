@@ -1,9 +1,10 @@
-package fr.doranco.study_smart.service;
+package fr.doranco.study_smart.service.image;
 
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.entities.Image;
 import fr.doranco.study_smart.repositories.CourseRepository;
 import fr.doranco.study_smart.repositories.ImageRepository;
+import fr.doranco.study_smart.service.course.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ImageServiceImpl implements ImageService{
+public class ImageServiceImpl implements ImageService {
 
     @Autowired
     ImageRepository imageRepository;

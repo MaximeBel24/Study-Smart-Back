@@ -1,11 +1,10 @@
-package fr.doranco.study_smart.service;
+package fr.doranco.study_smart.service.course;
 
 import fr.doranco.study_smart.entities.Category;
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.repositories.CourseRepository;
 import fr.doranco.study_smart.repositories.ImageRepository;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +12,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class CourseServiceImpl implements CourseService{
+public class CourseServiceImpl implements CourseService {
 
     @Autowired
     CourseRepository courseRepository;
