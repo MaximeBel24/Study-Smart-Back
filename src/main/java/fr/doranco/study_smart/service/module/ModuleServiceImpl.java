@@ -2,7 +2,10 @@ package fr.doranco.study_smart.service.module;
 
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.entities.Module;
+import fr.doranco.study_smart.entities.Lesson;
 import fr.doranco.study_smart.repositories.ModuleRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,5 +62,13 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public List<Module> findByCourseId(Long id) {
         return moduleRepository.findByCourseId(id);
+    }
+
+    @Transactional
+    public Module updateModuleDuration(Long moduleId) {
+        Module module = moduleRepository.findById(moduleId).orElseThrow(() -> new EntityNotFoundException("Module not found"));
+        int totalDuration = module.getLessons().stream().mapToInt(Lesson::getDuration).sum();
+        module.setDuration(totalDuration);
+        return moduleRepository.save(module);
     }
 }

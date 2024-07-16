@@ -1,5 +1,6 @@
 package fr.doranco.study_smart.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,8 +33,9 @@ public class Course {
 
     private String imagePath;
 
-    @OneToMany(mappedBy = "course")
-    private List<Module> module;
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Module> modules;
 
     @Override
     public String toString() {

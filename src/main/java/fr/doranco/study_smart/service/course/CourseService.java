@@ -19,5 +19,6 @@ public interface CourseService {
     List<Course> findByCategoryId(Long id);
     List<Course> findByOrderByTitleAsc();
     List<Course> sortTitlePrice();
+    Course updateCourseDuration(Long courseId);
 
 }

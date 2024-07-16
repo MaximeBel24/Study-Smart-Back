@@ -2,8 +2,11 @@ package fr.doranco.study_smart.service.course;
 
 import fr.doranco.study_smart.entities.Category;
 import fr.doranco.study_smart.entities.Course;
+import fr.doranco.study_smart.entities.Module;
 import fr.doranco.study_smart.repositories.CourseRepository;
 import fr.doranco.study_smart.repositories.ImageRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -103,6 +106,14 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> sortTitlePrice() {
         return courseRepository.sortTitlePrice();
+    }
+
+    @Transactional
+    public Course updateCourseDuration(Long courseId) {
+        Course course = courseRepository.findById(courseId).orElseThrow(() -> new EntityNotFoundException("Course not found"));
+        int totalDuration = course.getModules().stream().mapToInt(Module::getDuration).sum();
+        course.setDuration(totalDuration);
+        return courseRepository.save(course);
     }
 
 }

@@ -14,4 +14,5 @@ public interface ModuleService {
     List<Module> getAllModules();
     List<Module> findByCourse(Course course);
     List<Module> findByCourseId(Long id);
+    Module updateModuleDuration(Long moduleId);
 }

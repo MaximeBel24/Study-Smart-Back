@@ -3,6 +3,7 @@ package fr.doranco.study_smart.restcontrollers;
 import fr.doranco.study_smart.entities.Module;
 import fr.doranco.study_smart.service.module.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,8 +41,14 @@ public class ModuleRESTController {
         moduleService.deleteModuleById(id);
     }
 
-    @GetMapping(value = "/getbycourse/{cat}")
+    @GetMapping(value = "/getbycourse/{id}")
     public List<Module> getModuleByCourseId(@PathVariable("id") Long id) {
         return moduleService.findByCourseId(id);
+    }
+
+    @PutMapping("/update-duration/{moduleId}")
+    public ResponseEntity<Module> updateModuleDuration(@PathVariable Long moduleId) {
+        Module updatedModule = moduleService.updateModuleDuration(moduleId);
+        return ResponseEntity.ok(updatedModule);
     }
 }

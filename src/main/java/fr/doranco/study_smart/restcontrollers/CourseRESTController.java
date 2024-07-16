@@ -3,6 +3,7 @@ package fr.doranco.study_smart.restcontrollers;
 import fr.doranco.study_smart.entities.Course;
 import fr.doranco.study_smart.service.course.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,5 +49,11 @@ public class CourseRESTController {
     @GetMapping(value="/getbytitle/{title}")
     public List<Course> findByTitleContains(@PathVariable("title") String title) {
         return courseService.findByTitleContains(title);
+    }
+
+    @PutMapping("/update-duration/{courseId}")
+    public ResponseEntity<Course> updateCourseDuration(@PathVariable Long courseId) {
+        Course updatedCourse = courseService.updateCourseDuration(courseId);
+        return ResponseEntity.ok(updatedCourse);
     }
 }
