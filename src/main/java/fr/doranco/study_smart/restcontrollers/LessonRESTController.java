@@ -40,8 +40,10 @@ public class LessonRESTController {
         lessonService.deleteLessonById(id);
     }
 
-    @GetMapping(value = "/getbymodule/{id}")
+    @GetMapping(value = "/getbymoduleid/{id}")
     public List<Lesson> getLessonByModuleId(@PathVariable("id") Long id) {
         return lessonService.findByModuleId(id);
     }
+
+
 }
