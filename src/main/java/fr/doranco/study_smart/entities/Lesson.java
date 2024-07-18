@@ -25,15 +25,16 @@ public class Lesson {
     @Size(max = 1000, message = "Description must be less than 1000 characters")
     private String description;
 
+
     @NotBlank(message = "Content is mandatory")
-    @Size(max = 20000, message = "Content must be less than 20000 characters")
+    @Size(max = 50000, message = "Content must be less than 50000 characters")
     private String content;
 
     @PositiveOrZero(message = "Duration must be positive or zero")
     private int duration;
 
     @ManyToOne
-    @JoinColumn(name = "module_id")
+    @JoinColumn(name = "module_id", nullable = false)
     @JsonBackReference
     private Module module;
 }

@@ -32,7 +32,7 @@ public class Module {
     private int duration;
 
     @ManyToOne
-    @JoinColumn(name = "course_id")
+    @JoinColumn(name = "course_id", nullable = false)
     @JsonBackReference
     private Course course;
 

@@ -12,4 +12,6 @@ public interface ModuleRepository extends JpaRepository<Module, Long> {
     @Query("select m from Module m where m.course = ?1")
     List<Module> findByCourse(Course course);
     List<Module> findByCourseId(Long id);
+
+
 }

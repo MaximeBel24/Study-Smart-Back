@@ -45,5 +45,4 @@ public class LessonRESTController {
         return lessonService.findByModuleId(id);
     }
 
-
 }
