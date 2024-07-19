@@ -43,14 +43,17 @@ public class Course {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "course")
-    private List<Image> images;
-
-    private String imagePath;
-
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Module> modules;
+
+//    @OneToMany(mappedBy = "course")
+//    private List<Image> images;
+//
+//    private String imagePath;
+
+    @OneToOne
+    private Image image;
 
     @Override
     public String toString() {
@@ -58,11 +61,15 @@ public class Course {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", images='" + images + '\'' +
                 ", price=" + price +
                 ", duration=" + duration +
                 ", level='" + level + '\'' +
+                ", category=" + category +
+//                ", images=" + images +
+//                ", imagePath='" + imagePath + '\'' +
+                ", modules=" + modules +
                 '}';
     }
+
 
 }

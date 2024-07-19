@@ -30,7 +30,7 @@ public class ImageRESTController {
         return imageService.uploadImage(file);
     }
 
-    @RequestMapping(value = "/get/info/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get_info/{id}", method = RequestMethod.GET)
     public Image getImageDetails(@PathVariable("id") Long id) throws IOException {
         return imageService.getImageDetails(id);
     }
@@ -63,22 +63,22 @@ public class ImageRESTController {
         return imageService.getImagesByCourse(idCourse);
     }
 
-    @PostMapping(value = "/uploadFS/{id}")
-    public void uploadImageFS(
-            @RequestParam("image") MultipartFile file,
-            @PathVariable("id") Long id
-    ) throws IOException {
-        Course c = courseService.getCourse(id);
-        c.setImagePath(id+".jpg");
-
-        Files.write(Paths.get(System.getProperty("user.home") + "/images/" + c.getImagePath()), file.getBytes());
-        courseService.saveCourse(c);
-    }
-
-    @GetMapping(value = "/loadfromFS/{id}", produces = org.springframework.http.MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getImageFS(@PathVariable("id") Long id) throws IOException {
-        Course c = courseService.getCourse(id);
-
-        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/images/" + c.getImagePath()));
-    }
+//    @PostMapping(value = "/uploadFS/{id}")
+//    public void uploadImageFS(
+//            @RequestParam("image") MultipartFile file,
+//            @PathVariable("id") Long id
+//    ) throws IOException {
+//        Course c = courseService.getCourse(id);
+//        c.setImagePath(id+".jpg");
+//
+//        Files.write(Paths.get(System.getProperty("user.home") + "/images/" + c.getImagePath()), file.getBytes());
+//        courseService.saveCourse(c);
+//    }
+//
+//    @GetMapping(value = "/loadfromFS/{id}", produces = org.springframework.http.MediaType.IMAGE_JPEG_VALUE)
+//    public byte[] getImageFS(@PathVariable("id") Long id) throws IOException {
+//        Course c = courseService.getCourse(id);
+//
+//        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/images/" + c.getImagePath()));
+//    }
 }

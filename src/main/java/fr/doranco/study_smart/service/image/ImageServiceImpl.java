@@ -41,7 +41,7 @@ public class ImageServiceImpl implements ImageService {
         final Optional<Image> dbImage = imageRepository.findById(id);
 
         return Image.builder()
-                .idImage(dbImage.get().getIdImage())
+                .id(dbImage.get().getId())
                 .name(dbImage.get().getName())
                 .type(dbImage.get().getType())
                 .image(dbImage.get().getImage()).build();
@@ -76,6 +76,7 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public List<Image> getImagesByCourse(Long idCourse) {
         Course c = courseRepository.findById(idCourse).get();
-        return c.getImages();
+//        return c.getImages();
+        return null;
     }
 }

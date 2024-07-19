@@ -16,15 +16,19 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idImage;
+    private Long id;
     private String name;
     private String type;
 
-    @Column(name = "IMAGE", length = 4048576)
+    @Column(name = "image", length = 4048576)
     private byte[] image;
 
-    @ManyToOne
-    @JoinColumn(name = "COURSE_ID")
+//    @ManyToOne
+//    @JoinColumn(name = "course_id")
+//    @JsonIgnore
+//    private Course course;
+
+    @OneToOne
     @JsonIgnore
     private Course course;
 }

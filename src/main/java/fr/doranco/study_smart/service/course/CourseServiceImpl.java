@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -35,12 +36,12 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course updateCourse(Course c) {
-//        Long oldCourseImageId = this.getCourse(c.getId()).getImage().getIdImage();
-//        Long newCourseImageId = c.getImage().getIdImage();
+//        Long oldCourseImageId = this.getCourse(c.getId()).getImages().getId();
+//        Long newCourseImageId = c.getImages().getId();
 
             Course courseUpdated = courseRepository.save(c);
 
-//            if (oldCourseImageId != newCourseImageId)
+//            if (!Objects.equals(oldCourseImageId, newCourseImageId))
 //                imageRepository.deleteById(oldCourseImageId);
 
         return courseUpdated;
@@ -53,13 +54,13 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteCourseById(Long id) {
-        Course c = getCourse(id);
-        // supprimer l'image avant de supprimer le cours
-        try {
-            Files.delete(Paths.get(System.getProperty("user.home")+"/images/" + c.getImagePath()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Course c = getCourse(id);
+//        // supprimer l'image avant de supprimer le cours
+//        try {
+//            Files.delete(Paths.get(System.getProperty("user.home")+"/images/" + c.getImagePath()));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         courseRepository.deleteById(id);
     }
 
